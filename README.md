@@ -49,5 +49,5 @@ Finally, the ```tether_dun_required = 0``` fix is including to help with tetheri
 * [XanSama](http://forum.xda-developers.com/showpost.php?p=36544976&postcount=20)
 * #netfilter guys at freenode
 * [morrislee](http://forum.xda-developers.com/showthread.php?p=43925317)
-* [bpear96](http://forum.xda-developers.com/showpost.php?p=48237939&postcount=884)
+* [cg87](http://forum.xda-developers.com/showpost.php?p=48237939&postcount=882)
 * partylikeaninjastar
