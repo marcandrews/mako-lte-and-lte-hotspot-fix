@@ -1,0 +1,11 @@
+#!/system/bin/sh
+#--------------------------
+# Nexus 4 4.3 LTE fix v1.1
+#        by *child
+#--------------------------
+
+(
+sleep 15
+iptables -D natctrl_FORWARD -j DROP
+iptables -t nat -A natctrl_nat_POSTROUTING -o rmnet_usb0 -j MASQUERADE
+)

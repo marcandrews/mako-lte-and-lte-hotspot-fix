@@ -1,0 +1,33 @@
+assert(getprop("ro.product.device") == "mako" || getprop("ro.build.product") == "mako");
+
+show_progress(0.1, 0);
+ui_print("--------------------------");
+ui_print(" Nexus 4 4.3 LTE fix v1.1 ");
+ui_print("        by *child         ");
+ui_print("--------------------------");
+ui_print("");
+
+show_progress(0.7, 15);
+ui_print("Flashing .33/.84 hybrid radio by morrislee ...");
+package_extract_file("modem.img", "/tmp/modem.img");
+run_program("/sbin/busybox", "dd", "if=/tmp/modem.img", "of=/dev/block/platform/msm_sdcc.1/by-name/modem");
+delete("/tmp/modem.img");
+
+show_progress(0.1, 1);
+run_program("/sbin/busybox", "mount", "/system");
+
+ui_print("Adding addon.d and init.d scripts ...");
+package_extract_dir("system", "/system");
+set_perm(0, 0, 0755, "/system/addon.d/80-mako-lte.sh");
+set_perm(0, 0, 0755, "/system/etc/init.d/81makoltetether");
+
+ui_print("Initializing scripts ...");
+package_extract_file("initialize.sh", "/tmp/initialize.sh");
+set_perm(0, 0, 0777, "/tmp/initialize.sh");
+run_program("/tmp/initialize.sh", "");
+delete("/tmp/initialize.sh");
+
+unmount("/system");
+
+show_progress(0.1, 0);
+ui_print("Nexus 4 4.3 LTE fix SUCCESSFULLY applied.");
