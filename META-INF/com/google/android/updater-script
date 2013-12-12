@@ -1,15 +1,15 @@
 assert(getprop("ro.product.device") == "mako" || getprop("ro.build.product") == "mako");
 
 show_progress(0.1, 0);
-ui_print("--------------------------");
-ui_print(" Nexus 4 4.3 LTE fix v1.1 ");
-ui_print("       Uninstaller        ");
-ui_print("        by *child         ");
-ui_print("--------------------------");
+ui_print("---------------------------");
+ui_print("   Nexus 4 4.4.1 LTE fix   ");
+ui_print("   Uninstaller for v1.2+   ");
+ui_print("        by *child          ");
+ui_print("---------------------------");
 ui_print("");
 
 show_progress(0.7, 15);
-ui_print("Flashing .84 radio ...");
+ui_print("Flashing .98 radio ...");
 package_extract_file("modem.img", "/tmp/modem.img");
 run_program("/sbin/busybox", "dd", "if=/tmp/modem.img", "of=/dev/block/platform/msm_sdcc.1/by-name/modem");
 delete("/tmp/modem.img");
@@ -29,4 +29,4 @@ delete("/tmp/de-initialize.sh");
 unmount("/system");
 
 show_progress(0.1, 0);
-ui_print("Nexus 4 4.3 LTE fix SUCCESSFULLY uninstalled.");
+ui_print("Nexus 4 4.4.1 LTE fix SUCCESSFULLY uninstalled.");
