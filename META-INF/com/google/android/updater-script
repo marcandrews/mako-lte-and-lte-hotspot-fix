@@ -1,21 +1,43 @@
-assert(getprop("ro.product.device") == "mako" || getprop("ro.build.product") == "mako");
+# Nexus 4 LTE and LTE hotspot/tethering fix
+
+ui_print(" ");
+ui_print("------------------------");
+ui_print("    Nexus 4 LTE fix     ");
+ui_print("       by *child        ");
+ui_print("------------------------");
+ui_print(" ");
+ui_print("Nexus 4 LTE and LTE hotspot/tethering fix v1.3");
+ui_print(" ");
+sleep(1);
 
 show_progress(0.1, 0);
-ui_print("----------------------------");
-ui_print(" Nexus 4 4.4.1 LTE fix v1.2 ");
-ui_print("         by *child          ");
-ui_print("----------------------------");
-ui_print("");
+run_program("/sbin/busybox", "mount", "/system");
 
-show_progress(0.7, 15);
-ui_print("Flashing .33/.98 hybrid radio by morrislee ...");
+if
+  ( is_substring("mako", file_getprop("/system/build.prop","ro.product.device")) || is_substring("mako", file_getprop("/system/build.prop","ro.build.product")) ) &&
+  ( is_substring("4.4.1", file_getprop("/system/build.prop","ro.build.version.release")) || is_substring("4.4.2", file_getprop("/system/build.prop","ro.build.version.release")) )
+then
+  ui_print("Nexus 4 4.4.1+ ROM detected.");
+  ui_print(" ");
+else
+  ui_print("Incompatible device/ROM detected!");
+  ui_print(" ");
+  ui_print("This for Nexus 4 running Android 4.4.1-4.4.2 ONLY!");
+  ui_print(" ");
+  ui_print("Installation failed!");
+  ui_print(" ");
+	run_program("/sbin/busybox", "umount", "/system");
+  sleep(3);
+  abort("Aborting...");
+endif;
+
+show_progress(0.6, 15);
+ui_print("Flashing .33/.98 hybrid radio ...");
 package_extract_file("modem.img", "/tmp/modem.img");
 run_program("/sbin/busybox", "dd", "if=/tmp/modem.img", "of=/dev/block/platform/msm_sdcc.1/by-name/modem");
 delete("/tmp/modem.img");
 
-show_progress(0.1, 1);
-run_program("/sbin/busybox", "mount", "/system");
-
+show_progress(0.2, 5);
 ui_print("Adding addon.d and init.d scripts ...");
 package_extract_dir("system", "/system");
 set_perm(0, 0, 0755, "/system/addon.d/80-mako-lte.sh");
@@ -27,7 +49,17 @@ set_perm(0, 0, 0777, "/tmp/initialize.sh");
 run_program("/tmp/initialize.sh", "");
 delete("/tmp/initialize.sh");
 
-unmount("/system");
+ui_print("Installing tether_dun_required fix for T-Mobile ...");
+package_extract_file("sqlite3", "/tmp/sqlite3");
+set_perm(0, 0, 0777, "/tmp/sqlite3");
+run_program("/sbin/busybox", "mount", "/data");
+run_program("/tmp/sqlite3", "/data/data/com.android.providers.settings/databases/settings.db", "INSERT INTO global (name, value) VALUES ('tether_dun_required', 0);");
+unmount("/data");
+delete("/tmp/sqlite3");
 
+unmount("/system");
 show_progress(0.1, 0);
-ui_print("Nexus 4 4.4.1 LTE fix SUCCESSFULLY applied.");
+ui_print(" ");
+
+ui_print("Nexus 4 LTE fix SUCCESSFULLY applied!");
+sleep(3);

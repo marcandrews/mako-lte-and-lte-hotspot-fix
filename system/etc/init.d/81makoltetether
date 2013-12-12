@@ -1,11 +1,8 @@
 #!/system/bin/sh
-#--------------------------
-# Nexus 4 4.3 LTE fix v1.1
-#        by *child
-#--------------------------
+# Nexus 4 LTE and LTE hotspot/tethering fix
 
 (
-sleep 15
-iptables -D natctrl_FORWARD -j DROP
-iptables -t nat -A natctrl_nat_POSTROUTING -o rmnet_usb0 -j MASQUERADE
+  sleep 15
+  iptables -D natctrl_FORWARD -j DROP
+  iptables -t nat -A natctrl_nat_POSTROUTING -o rmnet_usb0 -j MASQUERADE
 )
