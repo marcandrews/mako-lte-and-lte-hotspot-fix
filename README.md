@@ -5,7 +5,7 @@ Here is my Nexus 4 LTE and LTE hotspot/tethering fix. This is different from oth
 
 
 ## What it does
-* Flashes .33/.98 hybrid radio
+* Flashes .33/1.02 hybrid radio
 * Modifies build.prop to permanently enable LTE
 * Adds init.d script that modifies iptables to fix LTE tethering upon bootup
 * Adds addon.d script that maintains build.prop and iptables modifications after ROM updates
@@ -13,7 +13,7 @@ Here is my Nexus 4 LTE and LTE hotspot/tethering fix. This is different from oth
 
 
 ## Requirements
-Any **rooted 4.4.1-4.4.2 ROM with init.d support**, like CM, AOSPA, or modified stock and, of course, an LTE Band 4 AWS-enabled SIM and service provider.
+Any **rooted 4.4.3 ROM with init.d support**, like CM, AOSPA, or modified stock and, of course, an LTE Band 4 AWS-enabled SIM and service provider.
 
 
 ## Installation instructions
@@ -28,7 +28,7 @@ Please see [uninstaller branch](https://github.com/marcandrews/Mako-LTE-and-LTE-
 
 
 ## More about the LTE tethering fix
-Since the Nexus 4 LTE hack was discovered, people on networks other then T-Mobile have been struggling to enable tethering over LTE. Pre-4.3, the solution was an iptables script to allow LTE tethering through the firewall. This solution no longer works for 4.3. I have updated the script to allow LTE tethering through the firewall in 4.3. My LTE fix applies the following changes:
+Since the Nexus 4 LTE hack was discovered, people on networks other then T-Mobile have been struggling to enable tethering over LTE. Pre-4.3, the solution was an iptables script to allow LTE tethering through the firewall. This solution no longer works for 4.3+. I have updated the script to allow LTE tethering through the firewall in 4.3+. My LTE fix applies the following changes:
 ```
 iptables -D natctrl_FORWARD -j DROP
 iptables -t nat -A natctrl_nat_POSTROUTING -o rmnet_usb0 -j MASQUERADE
