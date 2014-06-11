@@ -5,7 +5,7 @@ Here is the uninstaller for my Nexus 4 LTE and LTE hotspot/tethering fix. Please
 
 
 ## What it does
-* Flashes .98 hybrid radio
+* Flashes 1.02 hybrid radio
 * Removes build.prop edits that enable LTE
 * Removes init.d script that modifies iptables to fix LTE tethering upon bootup
 * Removes addon.d script that maintains build.prop and iptables modifications after ROM updates
