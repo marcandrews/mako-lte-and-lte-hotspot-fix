@@ -32,7 +32,7 @@ else
 endif;
 
 show_progress(0.6, 15);
-ui_print("Flashing .33/1.02 hybrid radio ...");
+ui_print("Flashing .02/.33/.02 hybrid radio ...");
 package_extract_file("modem.img", "/tmp/modem.img");
 run_program("/sbin/busybox", "dd", "if=/tmp/modem.img", "of=/dev/block/platform/msm_sdcc.1/by-name/modem");
 delete("/tmp/modem.img");
