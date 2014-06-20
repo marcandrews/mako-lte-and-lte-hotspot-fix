@@ -17,12 +17,12 @@ if
   ( is_substring("mako", file_getprop("/system/build.prop","ro.product.device")) || is_substring("mako", file_getprop("/system/build.prop","ro.build.product")) ) &&
   ( is_substring("4.4.3", file_getprop("/system/build.prop","ro.build.version.release")) || is_substring("4.4.4", file_getprop("/system/build.prop","ro.build.version.release")) )
 then
-  ui_print("Nexus 4 4.4.3-4 ROM detected.");
+  ui_print("Nexus 4 4.4.3-4.4.4 ROM detected.");
   ui_print(" ");
 else
   ui_print("Incompatible device/ROM detected!");
   ui_print(" ");
-  ui_print("This for Nexus 4 running Android 4.4.3-4 ONLY!");
+  ui_print("This for Nexus 4 running Android 4.4.3-4.4.4 ONLY!");
   ui_print(" ");
   ui_print("Installation failed!");
   ui_print(" ");
