@@ -13,7 +13,7 @@ Here is my Nexus 4 LTE and LTE hotspot/tethering fix. This is different from oth
 
 
 ## Requirements
-Any **rooted 4.4.3 ROM with init.d support**, like CM, AOSPA, or modified stock and, of course, an LTE Band 4 AWS-enabled SIM and service provider.
+Any **rooted 4.4.3-4.4.4 ROM with init.d support**, like CM, AOSPA, or modified stock and, of course, an LTE Band 4 AWS-enabled SIM and service provider.
 
 
 ## Installation instructions
