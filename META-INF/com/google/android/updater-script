@@ -6,7 +6,7 @@ ui_print("    Nexus 4 LTE fix     ");
 ui_print("       by *child        ");
 ui_print("------------------------");
 ui_print(" ");
-ui_print("Nexus 4 LTE and LTE hotspot/tethering fix v1.41");
+ui_print("Nexus 4 LTE and LTE hotspot/tethering fix v1.5");
 ui_print(" ");
 sleep(1);
 
@@ -15,14 +15,14 @@ run_program("/sbin/busybox", "mount", "/system");
 
 if
   ( is_substring("mako", file_getprop("/system/build.prop","ro.product.device")) || is_substring("mako", file_getprop("/system/build.prop","ro.build.product")) ) &&
-  ( is_substring("4.4.3", file_getprop("/system/build.prop","ro.build.version.release")) || is_substring("4.4.4", file_getprop("/system/build.prop","ro.build.version.release")) )
+  ( is_substring("4.4.4", file_getprop("/system/build.prop","ro.build.version.release")) )
 then
-  ui_print("Nexus 4 4.4.3-4.4.4 ROM detected.");
+  ui_print("Nexus 4 4.4.4 ROM detected.");
   ui_print(" ");
 else
   ui_print("Incompatible device/ROM detected!");
   ui_print(" ");
-  ui_print("This for Nexus 4 running Android 4.4.3-4.4.4 ONLY!");
+  ui_print("This for Nexus 4 running Android 4.4.4 ONLY!");
   ui_print(" ");
   ui_print("Installation failed!");
   ui_print(" ");
@@ -32,7 +32,7 @@ else
 endif;
 
 show_progress(0.6, 15);
-ui_print("Flashing .02/.33/.02 hybrid radio ...");
+ui_print("Flashing .03/.33/.03 hybrid radio ...");
 package_extract_file("modem.img", "/tmp/modem.img");
 run_program("/sbin/busybox", "dd", "if=/tmp/modem.img", "of=/dev/block/platform/msm_sdcc.1/by-name/modem");
 delete("/tmp/modem.img");
