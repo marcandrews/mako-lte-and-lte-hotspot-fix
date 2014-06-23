@@ -5,7 +5,7 @@ Here is my Nexus 4 LTE and LTE hotspot/tethering fix. This is different from oth
 
 
 ## What it does
-* Flashes .02/.33/.02 hybrid radio
+* Flashes .03/.33/.03 hybrid radio
 * Modifies build.prop to permanently enable LTE
 * Adds init.d script that modifies iptables to fix LTE tethering upon bootup
 * Adds addon.d script that maintains build.prop and iptables modifications after ROM updates
@@ -13,7 +13,7 @@ Here is my Nexus 4 LTE and LTE hotspot/tethering fix. This is different from oth
 
 
 ## Requirements
-Any **rooted 4.4.3-4.4.4 ROM with init.d support**, like CM, AOSPA, or modified stock and, of course, an LTE Band 4 AWS-enabled SIM and service provider.
+Any **rooted 4.4.4 ROM with init.d support**, like CM, AOSPA, or modified stock and, of course, an LTE Band 4 AWS-enabled SIM and service provider.
 
 
 ## Installation instructions
