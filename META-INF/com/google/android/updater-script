@@ -26,7 +26,7 @@ else
   ui_print(" ");
   ui_print("Installation failed!");
   ui_print(" ");
-	run_program("/sbin/busybox", "umount", "/system");
+  run_program("/sbin/busybox", "umount", "/system");
   sleep(3);
   abort("Aborting...");
 endif;
