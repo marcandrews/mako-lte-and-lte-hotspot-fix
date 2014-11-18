@@ -6,7 +6,7 @@ Here is my Nexus 4 LTE and LTE hotspot/tethering fix. This is different from oth
 
 ## What it does
 * Flashes .33/1.04 hybrid radio
-* Modifies build.prop to permanently enable LTE
+* Modifies settings.db to permanently enable LTE
 * Adds init.d script that modifies iptables to fix LTE tethering upon bootup
 * Adds addon.d script that maintains iptables modifications after ROM updates
 * Adds ```tether_dun_required``` fix for tethering on T-Mobile
