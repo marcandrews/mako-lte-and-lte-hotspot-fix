@@ -11,7 +11,7 @@ ui_print(" ");
 sleep(1);
 
 show_progress(0.1, 0);
-run_program("/sbin/busybox", "mount", "/system");
+mount("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/system", "/system");
 
 if
   ( is_substring("mako", file_getprop("/system/build.prop","ro.product.device")) || is_substring("mako", file_getprop("/system/build.prop","ro.build.product")) ) &&
@@ -45,7 +45,7 @@ set_perm(0, 0, 0755, "/system/etc/init.d/81makoltetether");
 
 package_extract_file("sqlite3", "/tmp/sqlite3");
 set_perm(0, 0, 0777, "/tmp/sqlite3");
-run_program("/sbin/busybox", "mount", "/data");
+mount("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/userdata", "/data");
 ui_print("Setting LTE as the preferred network mode  ...");
 run_program("/tmp/sqlite3", "/data/data/com.android.providers.settings/databases/settings.db", "UPDATE global (name, value) VALUES ('preferred_network_mode', 9);");
 ui_print("Installing tether_dun_required fix for T-Mobile ...");
