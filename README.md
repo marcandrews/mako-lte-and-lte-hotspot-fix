@@ -5,22 +5,20 @@ Here is my Nexus 4 LTE and LTE hotspot/tethering fix. This is different from oth
 
 
 ## What it does
-* Flashes .03/.33/.03 hybrid radio
+* Flashes .33/1.04 hybrid radio
 * Modifies build.prop to permanently enable LTE
 * Adds init.d script that modifies iptables to fix LTE tethering upon bootup
-* Adds addon.d script that maintains build.prop and iptables modifications after ROM updates
+* Adds addon.d script that maintains iptables modifications after ROM updates
 * Adds ```tether_dun_required``` fix for tethering on T-Mobile
 
 
 ## Requirements
-Any **rooted 4.4.4 ROM with init.d support**, like CM, AOSPA, or modified stock and, of course, an LTE Band 4 AWS-enabled SIM and service provider.
+Any **rooted 5.0 ROM with init.d support**, like CM, AOSPA, or modified stock and, of course, an LTE Band 4 AWS-enabled SIM and service provider.
 
 
 ## Installation instructions
 1. Download the installer ZIP to your device, flash from recovery, and reboot.
 2. After flashing, enable your correct LTE APN.
-3. Enable LTE by going to *Settings* > *More...* under *Wireless & networks* > *Mobile networks* > *Network Mode* and select **LTE/GSM/WCDMA**. It may take a minute or two for the network and LTE to register.
-  1. If the previous menu option is unavailable or if your LTE network fails to register, dial `*#*#INFO#*#*`, select *Phone information*, scroll down and select **LTE/GSM/CDMA auto (PRL)** from the drop-down.
 
 
 ## Uninstallation instructions
@@ -51,3 +49,4 @@ Finally, the ```tether_dun_required = 0``` fix is including to help with tetheri
 * [morrislee](http://forum.xda-developers.com/showthread.php?p=43925317)
 * [cg87](http://forum.xda-developers.com/showpost.php?p=48237939&postcount=882)
 * partylikeaninjastar
+* hp420
