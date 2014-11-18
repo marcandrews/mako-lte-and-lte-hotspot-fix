@@ -6,7 +6,7 @@ ui_print("    Nexus 4 LTE fix     ");
 ui_print("       by *child        ");
 ui_print("------------------------");
 ui_print(" ");
-ui_print("Nexus 4 LTE and LTE hotspot/tethering fix v1.5");
+ui_print("Nexus 4 LTE and LTE hotspot/tethering fix v2.0");
 ui_print(" ");
 sleep(1);
 
@@ -15,14 +15,14 @@ run_program("/sbin/busybox", "mount", "/system");
 
 if
   ( is_substring("mako", file_getprop("/system/build.prop","ro.product.device")) || is_substring("mako", file_getprop("/system/build.prop","ro.build.product")) ) &&
-  ( is_substring("4.4.4", file_getprop("/system/build.prop","ro.build.version.release")) )
+  ( is_substring("5.0", file_getprop("/system/build.prop","ro.build.version.release")) )
 then
-  ui_print("Nexus 4 4.4.4 ROM detected.");
+  ui_print("Nexus 4 Android 5.0 ROM detected.");
   ui_print(" ");
 else
   ui_print("Incompatible device/ROM detected!");
   ui_print(" ");
-  ui_print("This for Nexus 4 running Android 4.4.4 ONLY!");
+  ui_print("This for Nexus 4 running Android 5.0 ONLY!");
   ui_print(" ");
   ui_print("Installation failed!");
   ui_print(" ");
@@ -53,6 +53,7 @@ ui_print("Installing tether_dun_required fix for T-Mobile ...");
 package_extract_file("sqlite3", "/tmp/sqlite3");
 set_perm(0, 0, 0777, "/tmp/sqlite3");
 run_program("/sbin/busybox", "mount", "/data");
+run_program("/tmp/sqlite3", "/data/data/com.android.providers.settings/databases/settings.db", "UPDATE global (name, value) VALUES ('preferred_network_mode', 9);");
 run_program("/tmp/sqlite3", "/data/data/com.android.providers.settings/databases/settings.db", "INSERT INTO global (name, value) VALUES ('tether_dun_required', 0);");
 unmount("/data");
 delete("/tmp/sqlite3");
