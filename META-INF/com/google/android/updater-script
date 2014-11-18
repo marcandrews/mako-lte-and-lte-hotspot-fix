@@ -1,58 +1,52 @@
 # Nexus 4 LTE and LTE hotspot/tethering fix
 
 ui_print(" ");
-ui_print("------------------------");
-ui_print("    Nexus 4 LTE fix     ");
-ui_print("       by *child        ");
-ui_print("------------------------");
-ui_print(" ");
-ui_print("Nexus 4 LTE and LTE hotspot/tethering fix v5.0 *UNINSTALLER*");
+ui_print("Nexus 4 LTE and LTE hotspot/tethering fix v2.0 UNINSTALLER");
+ui_print("by *child");
 ui_print(" ");
 sleep(1);
 
 show_progress(0.1, 0);
-run_program("/sbin/busybox", "mount", "/system");
+mount("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/system", "/system");
+mount("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/userdata", "/data");
 
 if
   ( is_substring("mako", file_getprop("/system/build.prop","ro.product.device")) || is_substring("mako", file_getprop("/system/build.prop","ro.build.product")) ) &&
   ( is_substring("5.0", file_getprop("/system/build.prop","ro.build.version.release")) )
+
 then
   ui_print("Nexus 4 Android 5.0 ROM detected.");
   ui_print(" ");
+
+  ui_print("Extracting files ...");
+  package_extract_dir("tmp", "/tmp");
+  set_perm_recursive(0, 0, 0755, 0755, "/tmp");
+
+  show_progress(0.5, 15);
+  ui_print("Flashing 1.04 radio ...");
+  run_program("/sbin/busybox", "dd", "if=/tmp/modem.img", "of=/dev/block/platform/msm_sdcc.1/by-name/modem");
+
+  show_progress(0.1, 5);
+  ui_print("Restoring the default network mode  ...");
+  run_program("/tmp/scripts/query.sh");
+
+  show_progress(0.2, 5);
+  ui_print("Removing addon.d and init.d scripts ...");
+  delete("/system/addon.d/80-mako-lte.sh", "/system/etc/init.d/81makoltetether");
+
+  ui_print("Nexus 4 LTE and LTE hotspot/tethering fix SUCCESSFULLY uninstalled.");
+  
 else
-  ui_print("Incompatible device/ROM detected!");
+  ui_print("Incompatible device/ROM detected.");
   ui_print(" ");
-  ui_print("This for Nexus 4 running Android 5.0 ONLY!");
-  ui_print(" ");
-  ui_print("Uninstallation failed!");
-  ui_print(" ");
-	run_program("/sbin/busybox", "umount", "/system");
-  sleep(3);
-  abort("Aborting...");
+  ui_print("This for Nexus 4 running Android 5.0 ONLY.");
+  ui_print("Uninstallation aborted.");
+
 endif;
 
-
-show_progress(0.6, 15);
-ui_print("Flashing 1.03 radio ...");
-package_extract_file("modem.img", "/tmp/modem.img");
-run_program("/sbin/busybox", "dd", "if=/tmp/modem.img", "of=/dev/block/platform/msm_sdcc.1/by-name/modem");
-delete("/tmp/modem.img");
-
-show_progress(0.2, 5);
-ui_print("Removing addon.d and init.d scripts ...");
-delete("/system/addon.d/80-mako-lte.sh", "/system/etc/init.d/81makoltetether");
-
-package_extract_file("sqlite3", "/tmp/sqlite3");
-set_perm(0, 0, 0777, "/tmp/sqlite3");
-run_program("/sbin/busybox", "mount", "/data");
-ui_print("Unsetting LTE as the preferred network mode ...");
-run_program("/tmp/sqlite3", "/data/data/com.android.providers.settings/databases/settings.db", "UPDATE global (name, value) VALUES ('preferred_network_mode', 0);");
-ui_print("Uninstalling tether_dun_required fix for T-Mobile ...");
-run_program("/tmp/sqlite3", "/data/data/com.android.providers.settings/databases/settings.db", "DELETE FROM global WHERE name = 'tether_dun_required';");
 unmount("/data");
-delete("/tmp/sqlite3");
-
 unmount("/system");
 
 show_progress(0.1, 0);
-ui_print("Nexus 4 LTE fix SUCCESSFULLY uninstalled!");
+ui_print(" ");
+sleep(3);
