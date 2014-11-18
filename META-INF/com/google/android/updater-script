@@ -32,7 +32,7 @@ else
 endif;
 
 show_progress(0.6, 15);
-ui_print("Flashing .03/.33/.03 hybrid radio ...");
+ui_print("Flashing 33/104 hybrid radio ...");
 package_extract_file("modem.img", "/tmp/modem.img");
 run_program("/sbin/busybox", "dd", "if=/tmp/modem.img", "of=/dev/block/platform/msm_sdcc.1/by-name/modem");
 delete("/tmp/modem.img");
@@ -43,17 +43,12 @@ package_extract_dir("system", "/system");
 set_perm(0, 0, 0755, "/system/addon.d/80-mako-lte.sh");
 set_perm(0, 0, 0755, "/system/etc/init.d/81makoltetether");
 
-ui_print("Initializing scripts ...");
-package_extract_file("initialize.sh", "/tmp/initialize.sh");
-set_perm(0, 0, 0777, "/tmp/initialize.sh");
-run_program("/tmp/initialize.sh", "");
-delete("/tmp/initialize.sh");
-
-ui_print("Installing tether_dun_required fix for T-Mobile ...");
 package_extract_file("sqlite3", "/tmp/sqlite3");
 set_perm(0, 0, 0777, "/tmp/sqlite3");
 run_program("/sbin/busybox", "mount", "/data");
+ui_print("Setting LTE as the preferred network mode  ...");
 run_program("/tmp/sqlite3", "/data/data/com.android.providers.settings/databases/settings.db", "UPDATE global (name, value) VALUES ('preferred_network_mode', 9);");
+ui_print("Installing tether_dun_required fix for T-Mobile ...");
 run_program("/tmp/sqlite3", "/data/data/com.android.providers.settings/databases/settings.db", "INSERT INTO global (name, value) VALUES ('tether_dun_required', 0);");
 unmount("/data");
 delete("/tmp/sqlite3");
