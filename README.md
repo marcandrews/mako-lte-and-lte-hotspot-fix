@@ -39,7 +39,22 @@ The other issue is that this script had to be run each and every boot. Placing t
 )
 ```
 
-Finally, the ```tether_dun_required = 0``` fix is including to help with tethering on T-Mobile.
+
+## More about the enabling LTE via settings.db
+As I alluded to [back in July](http://forum.xda-developers.com/showpost.php?p=53825232&postcount=1315), the build.prop edits were never required to enabled LTE.
+```
+ro.telephony.default_network=9
+ro.ril.def.preferred.network=9
+```
+These lines tell the phone which network mode to try after a factory reset. This is why some LTE-enabling methods asked you to factory reset to enabled LTE but who wants to factory reset just to enabled LTE. So if you're not resetting, these lines have no effect.
+```
+telephony.lteOnGsmDevice=1
+```
+This line was to allow the selection of LTE under Network Mode, but this menu is no longer available >4.3, so this line has no effect. It was only indirectly required because that selection menu allowed you to change the ```preferred_network_mode``` value in settings.db, and this is what enables LTE and allows it to stay enabled permanently following a reboot.
+
+So if you can change the ```preferred_network_mode``` value directly, you do not need any build.prop edits, nor do you need the Network Mode selection menu. All you need is ```preferred_network_mode=9``` and an LTE-enabled modem/radio. This is what my LTE-enabler accomplishes.
+
+As for the discussion about LTE sticking after ROM flashes settings.db is located on the data partition. ROM flashable zips rarely touch the data partition, and they also rarely flash a new modem, so as long as these two remain, and you have not wiped (because wiping clears the data partition, which in turn will clear the ```preferred_network_mode``` value), LTE will stick after a ROM flash. So basically, you only need to flash my LTE-enabler after wiping.
 
 
 ## Special thanks
