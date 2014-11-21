@@ -1,18 +1,15 @@
-Nexus 4 LTE and LTE hotspot/tethering fix
+Nexus 4 LTE enabler
 =========================================
 
-Here is my Nexus 4 LTE and LTE hotspot/tethering fix. This is different from other fixes available in that, in addition, it should enable tethering/Wi-Fi portable hotspot over LTE for all service providers.
 
 
 ## What it does
 * Flashes .33/1.04 hybrid radio
 * Modifies settings.db to permanently enable LTE
-* Adds init.d script that modifies iptables to fix LTE tethering upon bootup
-* Adds addon.d script that maintains iptables modifications after ROM updates
 
 
 ## Requirements
-Any **rooted 5.0 ROM with init.d support**, like CM, AOSPA, or modified stock and, of course, an LTE Band 4 AWS-enabled SIM and service provider.
+Any Android 5.0 ROM and, of course, an LTE Band 4 AWS-enabled SIM and service provider.
 
 
 ## Installation instructions
@@ -22,22 +19,6 @@ Any **rooted 5.0 ROM with init.d support**, like CM, AOSPA, or modified stock an
 
 ## Uninstallation instructions
 Please see [uninstaller branch](https://github.com/marcandrews/Mako-LTE-and-LTE-hotspot-fix/tree/uninstaller) for more information.
-
-
-## More about the LTE tethering fix
-Since the Nexus 4 LTE hack was discovered, people on networks other then T-Mobile have been struggling to enable tethering over LTE. Pre-4.3, the solution was an iptables script to allow LTE tethering through the firewall. This solution no longer works for 4.3+. I have updated the script to allow LTE tethering through the firewall in 4.3+. My LTE fix applies the following changes:
-```
-iptables -D natctrl_FORWARD -j DROP
-iptables -t nat -A natctrl_nat_POSTROUTING -o rmnet_usb0 -j MASQUERADE
-```
-The other issue is that this script had to be run each and every boot. Placing the commands within an init.d script does not work because at the time init.d scripts are run in the boot, the natctrl_nat_POSTROUTING rule does not exist, so you cannot append to it. Even if you do create the rule and append to it, the changes will be overwritten when the rules are set later in the boot. The solution is to run the commands within a delayed subshell that alters the firewall after the rules are set. This is what my LTE fix does:
-```
-(
-  sleep 15
-  iptables -D natctrl_FORWARD -j DROP
-  iptables -t nat -A natctrl_nat_POSTROUTING -o rmnet_usb0 -j MASQUERADE
-)
-```
 
 
 ## More about the enabling LTE via settings.db
