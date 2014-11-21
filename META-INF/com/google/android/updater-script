@@ -18,6 +18,7 @@ then
   ui_print("Nexus 4 Android 5.0 ROM detected.");
   ui_print(" ");
 
+  show_progress(0.1, 5);
   ui_print("Extracting files ...");
   package_extract_dir("tmp", "/tmp");
   set_perm_recursive(0, 0, 0755, 0755, "/tmp");
@@ -26,13 +27,9 @@ then
   ui_print("Flashing 1.04 radio ...");
   run_program("/sbin/busybox", "dd", "if=/tmp/modem.img", "of=/dev/block/platform/msm_sdcc.1/by-name/modem");
 
-  show_progress(0.1, 5);
+  show_progress(0.2, 5);
   ui_print("Restoring the default network mode  ...");
   run_program("/tmp/scripts/query.sh");
-
-  show_progress(0.2, 5);
-  ui_print("Removing addon.d and init.d scripts ...");
-  delete("/system/addon.d/80-mako-lte.sh", "/system/etc/init.d/81makoltetether");
 
   ui_print("Nexus 4 LTE and LTE hotspot/tethering fix SUCCESSFULLY uninstalled.");
   
