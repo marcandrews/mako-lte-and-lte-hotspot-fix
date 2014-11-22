@@ -1,4 +1,4 @@
-Nexus 4 LTE enabler
+Nexus 4 LTE Enabler
 =========================================
 
 
