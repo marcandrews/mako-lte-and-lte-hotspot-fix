@@ -1,7 +1,7 @@
-Nexus 4 LTE and LTE hotspot/tethering fix uninstaller
-=====================================================
+Nexus 4 LTE Enabler uninstaller
+===============================
 
-Here is the uninstaller for my Nexus 4 LTE and LTE hotspot/tethering fix. Please use this uninstaller to ready your device for official OTA updates.
+Here is the uninstaller for my Nexus 4 LTE Enabler. Please use this uninstaller to ready your device for official OTA updates.
 
 
 ## What it does

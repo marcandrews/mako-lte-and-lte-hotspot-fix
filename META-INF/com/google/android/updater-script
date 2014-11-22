@@ -1,7 +1,5 @@
-# Nexus 4 LTE and LTE hotspot/tethering fix
-
 ui_print(" ");
-ui_print("Nexus 4 LTE and LTE hotspot/tethering fix v2.0 UNINSTALLER");
+ui_print("Nexus 4 LTE Enabler v2.0 UNINSTALLER");
 ui_print("by *child");
 ui_print(" ");
 sleep(1);
@@ -31,7 +29,7 @@ then
   ui_print("Restoring the default network mode  ...");
   run_program("/tmp/scripts/query.sh");
 
-  ui_print("Nexus 4 LTE and LTE hotspot/tethering fix SUCCESSFULLY uninstalled.");
+  ui_print("Nexus 4 LTE Enabler SUCCESSFULLY uninstalled.");
   
 else
   ui_print("Incompatible device/ROM detected.");
