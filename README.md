@@ -1,6 +1,6 @@
 Nexus 4 LTE Enabler
-=========================================
-
+===================
+This will permanently enable LTE on the Nexus 4 running any Android 5.0 ROM. As long the hybrid radio is present, and a factory reset is not performed, LTE should remain enabled after reboots and ROM flashes.
 
 
 ## What it does
@@ -9,7 +9,9 @@ Nexus 4 LTE Enabler
 
 
 ## Requirements
-Any Android 5.0 ROM and, of course, an LTE Band 4 AWS-enabled SIM and service provider.
+* Custom recovery
+* Any Android 5.0 ROM
+* LTE Band 4 (1700 MHz) AWS-enabled SIM and service provider
 
 
 ## Installation instructions
@@ -46,3 +48,4 @@ As for the discussion about LTE sticking after ROM flashes settings.db is locate
 * partylikeaninjastar
 * [beerbaronstatic](http://forum.xda-developers.com/showpost.php?p=56762318&postcount=1401)
 * ramjet73
+* Joshua Mr PC Repair
