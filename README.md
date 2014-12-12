@@ -1,23 +1,23 @@
 Nexus 4 LTE Enabler
 ===================
-This will permanently enable LTE on the Nexus 4 running any Android 5.0 ROM. As long the hybrid radio is present, and a factory reset is not performed, LTE should remain enabled after reboots and ROM flashes.
+This will permanently enable LTE on the Nexus 4 running any Android 5.0.1 ROM. As long the hybrid radio is present, and a factory reset is not performed, LTE should remain enabled after reboots and ROM flashes.
 
 
 ## What it does
-* Flashes .33/1.04 hybrid radio
+* Flashes .33/1.05 hybrid radio
 * Modifies settings.db to permanently enable LTE
 
 
 ## Requirements
-* Custom recovery
-* Any Android 5.0 ROM
+* Custom recovery (permanent or temporary)
+* Any Android 5.0.1 ROM
 * LTE Band 4 (1700 MHz) AWS-enabled SIM and service provider
 
 
 ## Installation instructions
 1. Download the installer ZIP to your device, flash from recovery, and reboot.
 2. After flashing, enable your correct LTE APN.
-
+Detailed instructions on on how to flash this on stock Nexus 4 running Android 5.0+ can be found [here](http://forum.xda-developers.com/nexus-4/general/4-4-3-nexus-4-lte-lte-tethering-hotspot-t2416822/post57145811)
 
 ## Uninstallation instructions
 Please see [uninstaller branch](https://github.com/marcandrews/Mako-LTE-and-LTE-hotspot-fix/tree/uninstaller) for more information.
