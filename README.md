@@ -17,6 +17,7 @@ This will permanently enable LTE on the Nexus 4 running any Android 5.0.1 ROM. A
 ## Installation instructions
 1. Download the installer ZIP to your device, flash from recovery, and reboot.
 2. After flashing, enable your correct LTE APN.
+
 Detailed instructions on on how to flash this on stock Nexus 4 running Android 5.0+ can be found [here](http://forum.xda-developers.com/nexus-4/general/4-4-3-nexus-4-lte-lte-tethering-hotspot-t2416822/post57145811)
 
 ## Uninstallation instructions
