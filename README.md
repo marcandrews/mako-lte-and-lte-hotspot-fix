@@ -5,7 +5,7 @@ Here is the uninstaller for my Nexus 4 LTE Enabler. Please use this uninstaller 
 
 
 ## What it does
-* Flashes 1.04 radio
+* Flashes 1.05 radio
 * Removes settings.db edits that enable LTE
 
 
