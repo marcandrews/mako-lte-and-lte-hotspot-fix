@@ -10,7 +10,7 @@ This will permanently enable LTE on the Nexus 4 running any Android 5.0.1 ROM. A
 
 ## Requirements
 * Custom recovery (permanent or temporary)
-* Any Android 5.0.1 ROM
+* Any Android 5.0.1+ ROM
 * LTE Band 4 (1700 MHz) AWS-enabled SIM and service provider
 
 
