@@ -1,5 +1,5 @@
 ui_print(" ");
-ui_print("Nexus 4 LTE Enabler v2.1 UNINSTALLER");
+ui_print("Nexus 4 LTE Enabler UNINSTALLER");
 ui_print("by *child");
 ui_print(" ");
 sleep(1);
@@ -10,10 +10,10 @@ mount("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/userdata", "/data"
 
 if
   ( is_substring("mako", file_getprop("/system/build.prop","ro.product.device")) || is_substring("mako", file_getprop("/system/build.prop","ro.build.product")) ) &&
-  ( is_substring("5.0.1", file_getprop("/system/build.prop","ro.build.version.release")) )
+  ( is_substring("5.0.1", file_getprop("/system/build.prop","ro.build.version.release")) || is_substring("5.0.2", file_getprop("/system/build.prop","ro.build.version.release")) )
 
 then
-  ui_print("Nexus 4 Android 5.0.1 ROM detected.");
+  ui_print("Nexus 4 Android 5.0.1+ ROM detected.");
   ui_print(" ");
 
   show_progress(0.1, 5);
@@ -34,7 +34,7 @@ then
 else
   ui_print("Incompatible device/ROM detected.");
   ui_print(" ");
-  ui_print("This for Nexus 4 running Android 5.0.1 ONLY.");
+  ui_print("This for Nexus 4 running Android 5.0.1+ ONLY.");
   ui_print("Uninstallation aborted.");
 
 endif;
